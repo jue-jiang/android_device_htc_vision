@@ -5,6 +5,7 @@
 
 /dev/msm_rotator        0660    system      graphics
 /dev/gemini0            0660    system      camera
+/dev/ion                0666    system      graphics
 
 /dev/akm8975_daemon     0640    compass     system
 /dev/akm8975_aot        0640    compass     system
