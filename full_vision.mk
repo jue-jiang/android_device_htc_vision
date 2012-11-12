@@ -23,24 +23,37 @@
 
 # GSM APN list
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/htc/vision/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # GSM SPN overrides list
 PRODUCT_COPY_FILES += \
-    vendor/cm/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml
- 
-#Torch
-PRODUCT_PACKAGES := \
-    Torch
+    vendor/htc/vision/etc/spn-conf.xml:system/etc/spn-conf.xml
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# This is where we'd set a backup provider if we had one
-#$(call inherit-product, device/sample/products/backup_overlay.mk)
-
 # Inherit from device
 $(call inherit-product, device/htc/vision/device.mk)
+$(call inherit-product, device/htc/vision/common.mk)
+
+# Bring in all audio files
+include frameworks/base/data/sounds/AllAudio.mk
+
+# Extra packages
+PRODUCT_PACKAGES += \
+    Stk \
+    Mms
+
+# Bring in all video files
+$(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
+
+# BT config
+PRODUCT_COPY_FILES += \
+    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
+
+PRODUCT_RELEASE_NAME := VISION
+
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_vision BUILD_FINGERPRINT=htc_wwe/htc_vision/vision:4.1.1/JRO03C/87995:user/release-keys PRIVATE_BUILD_DESC="4.1.1 AOSP release-keys"
 
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := full_vision

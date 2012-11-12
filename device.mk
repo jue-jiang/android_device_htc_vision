@@ -16,9 +16,6 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-#Andromadus Vendor include
-$(call inherit-product, vendor/andromadus/config/andromadus.mk)
-
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
     device/htc/vision/configs/gps.conf:system/etc/gps.conf
@@ -124,24 +121,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
 
-# Kernel modules
-#PRODUCT_COPY_FILES += \
-
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/msm7x30-common/msm7230/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-
+# the Kernel
 PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
-PRODUCT_COPY_FILES += \
-    device/htc/msm7x30-common/msm7230/bcmdhd.ko:system/lib/modules/bcmdhd.ko
-endif
-
-	# zram
-PRODUCT_COPY_FILES += \
-    device/htc/vision/ramdisk/zram.sh:root/sbin/zram.sh
+    device/htc/vision/prebuilt/zImage:kernel \
+    device/htc/vision/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
