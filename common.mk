@@ -22,7 +22,8 @@ PRODUCT_PACKAGES += \
     Camera \
     Development \
     LatinIME \
-    SpareParts
+    SpareParts \
+    su
 
 # Optional packages
 PRODUCT_PACKAGES += \
@@ -39,3 +40,8 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhaseBeam
 
+# Extra packages
+PRODUCT_PACKAGES += \
+    Apollo \
+    CMFileManager \
+    Superuser

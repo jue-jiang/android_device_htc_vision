@@ -23,11 +23,11 @@
 
 # GSM APN list
 PRODUCT_COPY_FILES += \
-    vendor/htc/vision/etc/apns-conf.xml:system/etc/apns-conf.xml
+    device/htc/vision/configs/apns-conf.xml:system/etc/apns-conf.xml
 
 # GSM SPN overrides list
 PRODUCT_COPY_FILES += \
-    vendor/htc/vision/etc/spn-conf.xml:system/etc/spn-conf.xml
+    device/htc/vision/configs/spn-conf.xml:system/etc/spn-conf.xml
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
