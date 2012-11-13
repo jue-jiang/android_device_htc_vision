@@ -40,8 +40,13 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     PhaseBeam
 
-# Extra packages
+# CM packages
 PRODUCT_PACKAGES += \
     Apollo \
     CMFileManager \
     Superuser
+
+# Extra packages
+PRODUCT_PACKAGES += \
+    Stk \
+    Mms
