@@ -14,23 +14,24 @@
 # limitations under the License.
 #
 
+PRODUCT_BRAND ?= Google
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
 PRODUCT_COPY_FILES += \
     device/htc/vision/configs/gps.conf:system/etc/gps.conf
 
-## (1) First, the most specific values, i.e. the aspects that are specific to GSM
-
+# ramdisk stuff
 PRODUCT_COPY_FILES += \
     device/htc/vision/ramdisk/init.vision.rc:root/init.vision.rc \
     device/htc/vision/ramdisk/ueventd.vision.rc:root/ueventd.vision.rc \
     device/htc/vision/ramdisk/fstab.vision:root/fstab.vision
 
-## (2) Also get non-open-source GSM-specific aspects if available
+# get non-open-source GSM-specific aspects if available
 $(call inherit-product-if-exists, vendor/htc/vision/device-vendor.mk)
 
-## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
+# the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.locationfeatures=1 \
     ro.com.google.networklocation=1 \
@@ -43,20 +44,25 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vold.umsdirtyratio=20
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/vision/overlay
+# Extra props
+PRODUCT_PROPERTY_OVERRIDES += \
+    keyguard.no_require_sim=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-google \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+DEVICE_PACKAGE_OVERLAYS += device/htc/vision/overlay
 
 # gsm config xml file
 PRODUCT_COPY_FILES += \
-    device/htc/vision/configs/voicemail-conf.xml:system/etc/voicemail-conf.xml
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
-# Sensors, GPS, Lights, Power
-PRODUCT_PACKAGES += \
-    gps.vision \
-    lights.vision \
-    sensors.vision
+PRODUCT_COPY_FILES += \
+    device/htc/vision/configs/voicemail-conf.xml:system/etc/voicemail-conf.xml
 
 # Input device calibration files
 PRODUCT_COPY_FILES += \
@@ -131,10 +137,56 @@ $(call inherit-product, device/htc/common/common.mk)
 # common msm7x30 configs
 $(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
 
-# htc audio settings
+# Audio settings
 $(call inherit-product, device/htc/vision/media_htcaudio.mk)
 $(call inherit-product, device/htc/vision/media_a1026.mk)
 
+# Dalvik heap
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-$(call inherit-product-if-exists, vendor/htc/vision/device-vendor.mk)
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+# Enable SIP+VoIP on all targets
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
+# Sensors, GPS, Lights, Power
+PRODUCT_PACKAGES += \
+    gps.vision \
+    lights.vision \
+    sensors.vision
+
+# Required packages
+PRODUCT_PACKAGES += \
+    Launcher2 \
+    Camera \
+    Development \
+    LatinIME \
+    SpareParts \
+    su
+
+# Optional packages
+PRODUCT_PACKAGES += \
+    VideoEditor \
+    VoiceDialer \
+    SoundRecorder \
+    Basic \
+    HoloSpiralWallpaper \
+    MagicSmokeWallpapers \
+    NoiseField \
+    Galaxy4 \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    PhaseBeam
+
+# CM packages
+PRODUCT_PACKAGES += \
+    Apollo \
+    CMFileManager \
+    Superuser
+
+# Extra packages
+PRODUCT_PACKAGES += \
+    Stk \
+    Mms
