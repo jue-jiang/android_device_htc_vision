@@ -135,7 +135,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, device/htc/common/common.mk)
 
 # common msm7x30 configs
-$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
+$(call inherit-product, device/htc/vision/msm7x30.mk)
 
 # Audio settings
 $(call inherit-product, device/htc/vision/media_htcaudio.mk)

@@ -34,7 +34,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from device
 $(call inherit-product, device/htc/vision/device.mk)
-$(call inherit-product, device/htc/vision/vision.mk)
 
 # Bring in all audio files
 include frameworks/base/data/sounds/AllAudio.mk
