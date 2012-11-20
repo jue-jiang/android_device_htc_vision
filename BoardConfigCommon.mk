@@ -59,7 +59,7 @@ BOARD_VOLD_MAX_PARTITIONS := 36
 
 # QCOM Display
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
-BOARD_EGL_CFG := device/htc/vision/egl.cfg
+BOARD_EGL_CFG := device/htc/vision/configs/egl.cfg
 BOARD_USES_ADRENO_200 := true
 TARGET_GRALLOC_USES_ASHMEM := true
 TARGET_PROVIDES_LIBLIGHTS := true

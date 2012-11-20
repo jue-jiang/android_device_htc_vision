@@ -30,9 +30,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-PRODUCT_COPY_FILES += \
-    device/htc/vision/init.htc7x30.usb.rc:root/init.htc7x30.usb.rc
-
 # Common 7x30 firmware
 PRODUCT_COPY_FILES += \
     device/htc/vision/firmware/vidc_720p_command_control.fw:system/etc/firmware/vidc_720p_command_control.fw \
@@ -45,9 +42,9 @@ PRODUCT_COPY_FILES += \
 
 # media configs
 PRODUCT_COPY_FILES += \
-    device/htc/vision/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/vision/media_codecs.xml:system/etc/media_codecs.xml \
-    device/htc/vision/audio_policy.conf:system/etc/audio_policy.conf
+    device/htc/vision/configs/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/vision/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/vision/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Camera
 PRODUCT_COPY_FILES += \
