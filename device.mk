@@ -126,10 +126,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
 
-# the Kernel
+# Prebuilts
 PRODUCT_COPY_FILES += \
     device/htc/vision/prebuilt/zImage:kernel \
-    device/htc/vision/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko
+    device/htc/vision/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
+    device/htc/vision/prebuilt/sysinit:system/bin/sysinit
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
