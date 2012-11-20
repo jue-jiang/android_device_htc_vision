@@ -46,10 +46,6 @@ PRODUCT_COPY_FILES += \
     device/htc/vision/configs/media_codecs.xml:system/etc/media_codecs.xml \
     device/htc/vision/configs/audio_policy.conf:system/etc/audio_policy.conf
 
-# Camera
-PRODUCT_COPY_FILES += \
-    device/htc/vision/prebuilt/libsurfaceflinger_client.so:system/lib/libsurfaceflinger_client.so
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -86,13 +82,6 @@ PRODUCT_PACKAGES += \
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    librs_jni
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

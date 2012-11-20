@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-PRODUCT_BRAND ?= Google
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
@@ -28,9 +26,6 @@ PRODUCT_COPY_FILES += \
     device/htc/vision/ramdisk/init.vision.rc:root/init.vision.rc \
     device/htc/vision/ramdisk/ueventd.vision.rc:root/ueventd.vision.rc \
     device/htc/vision/ramdisk/fstab.vision:root/fstab.vision
-
-# get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/vision/device-vendor.mk)
 
 # the non-GSM-specific aspects
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -146,7 +141,8 @@ $(call inherit-product, device/htc/vision/media_a1026.mk)
 # Dalvik heap
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+# Non-open source blobs (Camera, Adreno etc)
+$(call inherit-product, device/htc/vision/vision-vendor-blobs.mk)
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -161,10 +157,11 @@ PRODUCT_PACKAGES += \
 # Required packages
 PRODUCT_PACKAGES += \
     Launcher2 \
-    Camera \
     Development \
     LatinIME \
     SpareParts \
+    Stk \
+    Mms \
     su
 
 # Optional packages
@@ -174,12 +171,8 @@ PRODUCT_PACKAGES += \
     SoundRecorder \
     Basic \
     HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
     NoiseField \
     Galaxy4 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
     PhaseBeam
 
 # CM packages
@@ -188,7 +181,14 @@ PRODUCT_PACKAGES += \
     CMFileManager \
     Superuser
 
-# Extra packages
-PRODUCT_PACKAGES += \
-    Stk \
-    Mms
+# Live wallpaper packages
+PRODUCT_PACKAGES := \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    MagicSmokeWallpapers \
+    VisualizationWallpapers \
+    librs_jni
+
+# Publish that we support the live wallpaper feature
+PRODUCT_COPY_FILES := \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
