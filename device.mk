@@ -48,7 +48,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.google.clientidbase=android-google \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
-    ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/vision/overlay
@@ -148,46 +147,25 @@ $(call inherit-product, device/htc/vision/vision-vendor-blobs.mk)
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
-# Sensors, GPS, Lights, Power
+# Sensors, GPS, Lights
 PRODUCT_PACKAGES += \
     gps.vision \
     lights.vision \
     sensors.vision
 
-# Required packages
-PRODUCT_PACKAGES += \
-    Launcher2 \
-    Development \
-    LatinIME \
-    SpareParts \
-    Stk \
-    Mms \
-    su
-
 # Optional packages
 PRODUCT_PACKAGES += \
-    VideoEditor \
-    VoiceDialer \
+    Development \
     SoundRecorder \
-    Basic \
-    HoloSpiralWallpaper \
-    NoiseField \
-    Galaxy4 \
-    PhaseBeam
+    SpareParts \
+    Stk \
+    su
 
 # CM packages
 PRODUCT_PACKAGES += \
     Apollo \
     CMFileManager \
     Superuser
-
-# Live wallpaper packages
-PRODUCT_PACKAGES := \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    MagicSmokeWallpapers \
-    VisualizationWallpapers \
-    librs_jni
 
 # Publish that we support the live wallpaper feature
 PRODUCT_COPY_FILES := \
