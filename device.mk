@@ -59,46 +59,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/vision/configs/voicemail-conf.xml:system/etc/voicemail-conf.xml
 
-# Input device calibration files
-PRODUCT_COPY_FILES += \
-    device/htc/vision/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
-    device/htc/vision/idc/curcial-oj.idc:system/usr/idc/curcial-oj.idc
-
-# Keylayouts
-PRODUCT_COPY_FILES += \
-    device/htc/vision/keylayout/vision-keypad-ara.kl:system/usr/keylayout/vision-keypad-ara.kl \
-    device/htc/vision/keylayout/vision-keypad-ell.kl:system/usr/keylayout/vision-keypad-ell.kl \
-    device/htc/vision/keylayout/vision-keypad-esn.kl:system/usr/keylayout/vision-keypad-esn.kl \
-    device/htc/vision/keylayout/vision-keypad-fra.kl:system/usr/keylayout/vision-keypad-fra.kl \
-    device/htc/vision/keylayout/vision-keypad-ger.kl:system/usr/keylayout/vision-keypad-ger.kl \
-    device/htc/vision/keylayout/vision-keypad-hk.kl:system/usr/keylayout/vision-keypad-hk.kl \
-    device/htc/vision/keylayout/vision-keypad-ita.kl:system/usr/keylayout/vision-keypad-ita.kl \
-    device/htc/vision/keylayout/vision-keypad.kl:system/usr/keylayout/vision-keypad.kl \
-    device/htc/vision/keylayout/vision-keypad-nor.kl:system/usr/keylayout/vision-keypad-nor.kl \
-    device/htc/vision/keylayout/vision-keypad-rus.kl:system/usr/keylayout/vision-keypad-rus.kl \
-    device/htc/vision/keylayout/vision-keypad-sea.kl:system/usr/keylayout/vision-keypad-sea.kl \
-    device/htc/vision/keylayout/vision-keypad-tur.kl:system/usr/keylayout/vision-keypad-tur.kl \
-    device/htc/vision/keylayout/vision-keypad-wwe-bopomo.kl:system/usr/keylayout/vision-keypad-wwe-bopomo.kl \
-    device/htc/vision/keylayout/vision-keypad-wwe.kl:system/usr/keylayout/vision-keypad-wwe.kl \
-    device/htc/vision/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl 
-
-# Keymaps
-PRODUCT_COPY_FILES += \
-    device/htc/vision/keychars/vision-keypad-ara.kcm:system/usr/keychars/vision-keypad-ara.kcm \
-    device/htc/vision/keychars/vision-keypad-ell.kcm:system/usr/keychars/vision-keypad-ell.kcm \
-    device/htc/vision/keychars/vision-keypad-esn.kcm:system/usr/keychars/vision-keypad-esn.kcm \
-    device/htc/vision/keychars/vision-keypad-fra.kcm:system/usr/keychars/vision-keypad-fra.kcm \
-    device/htc/vision/keychars/vision-keypad-ger.kcm:system/usr/keychars/vision-keypad-ger.kcm \
-    device/htc/vision/keychars/vision-keypad-hk.kcm:system/usr/keychars/vision-keypad-hk.kcm \
-    device/htc/vision/keychars/vision-keypad-ita.kcm:system/usr/keychars/vision-keypad-ita.kcm \
-    device/htc/vision/keychars/vision-keypad.kcm:system/usr/keychars/vision-keypad.kcm \
-    device/htc/vision/keychars/vision-keypad-nor.kcm:system/usr/keychars/vision-keypad-nor.kcm \
-    device/htc/vision/keychars/vision-keypad-rus.kcm:system/usr/keychars/vision-keypad-rus.kcm \
-    device/htc/vision/keychars/vision-keypad-sea.kcm:system/usr/keychars/vision-keypad-sea.kcm \
-    device/htc/vision/keychars/vision-keypad-tur.kcm:system/usr/keychars/vision-keypad-tur.kcm \
-    device/htc/vision/keychars/vision-keypad-wwe-bopomo.kcm:system/usr/keychars/vision-keypad-wwe-bopomo.kcm \
-    device/htc/vision/keychars/vision-keypad-wwe.kcm:system/usr/keychars/vision-keypad-wwe.kcm 
-
 # Device specific firmware
 PRODUCT_COPY_FILES += \
     device/htc/vision/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
@@ -127,11 +87,31 @@ PRODUCT_COPY_FILES += \
     device/htc/vision/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
     device/htc/vision/prebuilt/sysinit:system/bin/sysinit
 
+# Sensors, GPS, Lights
+PRODUCT_PACKAGES += gps.vision lights.vision sensors.vision
+
+# Optional packages
+PRODUCT_PACKAGES += Development SoundRecorder SpareParts Stk su
+
+# CM packages
+PRODUCT_PACKAGES += Apollo CMFileManager Superuser
+
+# Publish that we support the live wallpaper feature
+PRODUCT_COPY_FILES += \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
+
+# Enable SIP+VoIP on all targets
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
 # common msm7x30 configs
 $(call inherit-product, device/htc/vision/msm7x30.mk)
+
+# input configs
+$(call inherit-product, device/htc/vision/input.mk)
 
 # Audio settings
 $(call inherit-product, device/htc/vision/media_htcaudio.mk)
@@ -142,31 +122,3 @@ $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Non-open source blobs (Camera, Adreno etc)
 $(call inherit-product, device/htc/vision/vision-vendor-blobs.mk)
-
-# Enable SIP+VoIP on all targets
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
-
-# Sensors, GPS, Lights
-PRODUCT_PACKAGES += \
-    gps.vision \
-    lights.vision \
-    sensors.vision
-
-# Optional packages
-PRODUCT_PACKAGES += \
-    Development \
-    SoundRecorder \
-    SpareParts \
-    Stk \
-    su
-
-# CM packages
-PRODUCT_PACKAGES += \
-    Apollo \
-    CMFileManager \
-    Superuser
-
-# Publish that we support the live wallpaper feature
-PRODUCT_COPY_FILES += \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:/system/etc/permissions/android.software.live_wallpaper.xml
