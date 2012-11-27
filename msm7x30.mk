@@ -48,8 +48,7 @@ PRODUCT_COPY_FILES += \
 
 # backup tools
 PRODUCT_COPY_FILES += \
-    device/htc/vision/prebuilt/backuptool.sh:system/bin/backuptool.sh \
-    device/htc/vision/prebuilt/backuptool.functions:system/bin/backuptool.functions
+    device/htc/vision/prebuilt/backuptool.sh:system/bin/backuptool.sh
 
 # Audio
 PRODUCT_PACKAGES += \
