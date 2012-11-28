@@ -22,7 +22,7 @@ PRODUCT_COPY_FILES += \
 
 # ramdisk stuff
 PRODUCT_COPY_FILES += \
-    device/htc/vision/ramdisk/init.msm7x30.usb.rc:root/init.msm7x30.usb.rc \
+    device/htc/vision/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
     device/htc/vision/ramdisk/init.vision.rc:root/init.vision.rc \
     device/htc/vision/ramdisk/ueventd.vision.rc:root/ueventd.vision.rc \
     device/htc/vision/ramdisk/fstab.vision:root/fstab.vision
