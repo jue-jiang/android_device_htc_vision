@@ -85,7 +85,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/vision/prebuilt/zImage:kernel \
     device/htc/vision/prebuilt/bcmdhd.ko:system/lib/modules/bcmdhd.ko \
-    device/htc/vision/prebuilt/sysinit:system/bin/sysinit
+    device/htc/vision/prebuilt/sysinit:system/bin/sysinit \
+    device/htc/vision/prebuilt/init.d/90userinit:system/etc/init.d/90userinit
 
 # Sensors, GPS, Lights
 PRODUCT_PACKAGES += gps.vision lights.vision sensors.vision
