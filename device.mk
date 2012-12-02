@@ -90,7 +90,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += gps.vision lights.vision sensors.vision
 
 # Optional packages
-PRODUCT_PACKAGES += Development SoundRecorder SpareParts Stk su
+PRODUCT_PACKAGES += Development Email SoundRecorder SpareParts Stk su
 
 # CM packages
 PRODUCT_PACKAGES += Apollo CMFileManager Superuser
