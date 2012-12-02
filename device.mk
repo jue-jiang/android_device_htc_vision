@@ -76,9 +76,10 @@ $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329
 PRODUCT_COPY_FILES += \
     device/htc/vision/configs/vold.fstab:system/etc/vold.fstab
 
-# BT main.conf
+# BT
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf
+    system/bluetooth/data/main.conf:system/etc/bluetooth/main.conf \
+    device/htc/vision/configs/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
